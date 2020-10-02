@@ -54,12 +54,84 @@ int dequeue(Queue q){
 	q->count--;
 	return item;
 }
-void displayQueue(Queue q){
+void push(Stack s, int item){
+	Nodeptr temp=createNode(item);
+	temp->next=s->top;
+	s->top=temp;
+	s->count++;
+	
+}
+int pop(Stack s){
+	int item;
+	Nodeptr temp = s->top;
+	item = temp->data;
+	s->top=temp->next;
+	temp->next=NULL;
+	free(temp);
+	s->count--;
+	return item;	
+}
+int checker(Stack s, Queue q){
+	if(isEmptyS(s)==1 && isEmptyQ(q)==1)
+		return 1;
+	return 0;
+	
+}
+void menu(){
+	printf("STACK AND QUEUE TEST DRIVER\n");
+	printf("1. Insert\n");
+	printf("2. Delete\n");
+	printf("3. Exit\n");
+	printf("\n Choose: ");
+}
+int getItem(){
+	int x;
+	printf("Input Item: ");
+	scanf("%d",&x);
+	return x;
+}
+int Run(){
+	int x;
+	printf("Choose 1 to Try Again | 0 to Exit: ");
+	scanf("%d",&x);
+	return x==1;
+}
+void displayS(Stack s){
 	Nodeptr ptr;
-	ptr = q->front;
+	ptr = s->top;
+	printf("\n[");
 	while(ptr != NULL){
 		printf("%d ",ptr->data);
 		ptr=ptr->next;
 	}
+	printf("]\n");
 }
-
+void displayQ(Queue q){
+	Nodeptr ptr = q->front;
+	printf("\n[");
+	while(ptr != NULL){
+		printf("%d ",ptr->data);
+		ptr=ptr->next;
+	}
+	printf("]\n");
+}
+void freeS(Stack s){
+	Nodeptr temp;
+	while(s->top!=NULL){
+		temp = s->top;
+		s->top = s->top->next;
+		temp->next = NULL; 
+		free(temp);
+		(s->count)--;
+	}
+}
+void freeQ(Queue q){
+	Nodeptr temp; 
+	while(q->front!=NULL){
+		temp = q->front;
+		q->front = q->front->next;
+		temp->next = NULL; 
+		free(temp);
+		(q->count)--;
+	}
+}

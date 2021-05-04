@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 		if(checker(InputS,InputQ) && flag == 1){
 			system("CLS");
 			printf("Input STACK & QUEUE are now Empty!");
-			printf("Output Stack: ");
+			printf("\nOutput Stack: ");
 			displayS(OutputS);
 			freeS(OutputS);
 			printf("Output Queue: ");
@@ -65,3 +65,4 @@ int main(int argc, char *argv[]) {
 	printf("Thank You for Using The Program");
 	return 0;
 }
+
